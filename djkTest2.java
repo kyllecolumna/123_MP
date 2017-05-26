@@ -22,11 +22,14 @@ public class djkTest2 {
 			br = new BufferedReader(new FileReader(FILENAME));
 			
 			
-
+			int level = 0;
+			
 			while ((sCurrentLine = br.readLine()) != null) {
-				
-				int level = 0;
+					
 				Scanner s = new Scanner(sCurrentLine);
+				
+				System.out.println("Level " + level);
+				level++;
 				
 				int roomCount = s.nextInt();
 				System.out.println("roomCount = " + roomCount);
@@ -34,33 +37,18 @@ public class djkTest2 {
 				int pathCount = s.nextInt();
 				System.out.println("pathCount = " + pathCount);
 				
-				//int i;
+				sCurrentLine = br.readLine();
 				
-				//sCurrentLine = br.readLine();
-				int start = s.nextInt();
-				System.out.println("start = " + start);
-				int end = s.nextInt();
-				System.out.println("end = " + end);
-				int cost = s.nextInt();
-				System.out.println("cost = " + cost);
-				
-				/*for (i = 0; i < pathCount; i++) {
-					 start = s.nextInt();
+				for (int i = 0; i < pathCount; i++) {
+					int start = s.nextInt();
 					System.out.println("start = " + start);
-					 end = s.nextInt();
+					int end = s.nextInt();
 					System.out.println("end = " + end);
-					 cost = s.nextInt();
+					int cost = s.nextInt();
 					System.out.println("cost = " + cost);
 					
 					sCurrentLine = br.readLine();
-				}*/
-				
-				
-				//Scanner s = new Scanner(sCurrentLine);
-				
-				//while (s.hasNext()) {
-					//  System.out.println(s.nextInt());
-				//}
+				}
 				
 				
 			}
