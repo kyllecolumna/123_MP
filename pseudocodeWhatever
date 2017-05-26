@@ -1,1 +1,65 @@
-ffs
+Based on Sir's pdf, terms will be as follows:
+  roomCount = n;
+  pathCount = e;
+  start[i] = s;
+  end[i] = e;
+  cost[i] = c;
+  
+PSEUDOCODE NA MEDYO ALGORITHM (please refer to ReadFileExample1.java)
+
+
+int level = 0;
+
+while (sCurrentLine != "0 0") {
+  
+  System.out.println("Level " + level);
+  level++;
+  
+  int roomCount = /* first int (on sCurrentLine) */;
+  int pathCount = /* second int (on sCurrentLine) */;
+  
+  
+  for (int i = 0; i < pathCount; i++) {
+  
+    /* please refer to GRAPH declaration in Dijkstra.java; aayusin ko pa yung syntax dito */
+    sCurrentLine = br.readLine();
+    
+    // declare arrays
+    start[i] = /* first int (on sCurrentLine) */;
+    end[i] = /* second int (on sCurrentLine) */;
+    cost[i] = /* third int (on sCurrentLine) */;
+    
+    new Graph.Edge(start, end, cost);
+    /* if you have any idea re how to add edges (idk if this will work kasi), please say so */
+    
+  }
+  
+  
+  String START, END;
+  END = roomCount  // pertaining to FIRE EXIT (last room)
+  
+  for (int j = 0; j < (roomCount - 1); j++) {
+  
+    START = j;
+    Graph g = new Graph(GRAPH);
+    g.dijkstra(START);
+    g.printPath(END);
+    
+    //declare array
+    goTo[j] = /* next room based on output from Dijkstra.java */;
+    
+    System.out.print("Room " + j + ": Please go to ");
+    
+    if (goTo[j] == (roomCount - 2)) {
+      
+      System.out.println("the fire exit.");
+      
+    } else {
+     
+      System.out.println("Room " + goTo[j] + ".");
+      
+    }
+  
+  }
+  
+}
