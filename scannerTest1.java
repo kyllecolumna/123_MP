@@ -99,8 +99,12 @@ public class scannerTest1 {
            
             	for (int j = 0; j < arrayDumpCount; j++) {
             		Scanner input2 = new Scanner(threeDigitArray[j]);
-            		edgeGroup[j].start = input2.nextInt();
-            		edgeGroup[j].end  = input2.nextInt();
+            		String temp1 = String.valueOf(input2.nextInt());
+            		System.out.println("temp1: " + temp1);
+            		edgeGroup[j].start = temp1;
+            		String temp2 = String.valueOf(input2.nextInt());
+            		System.out.println("temp2: " + temp2);
+            		edgeGroup[j].end  = temp2;
             		edgeGroup[j].cost = input2.nextInt();
             		System.out.println(threeDigitArray[j]);
             	}	        
