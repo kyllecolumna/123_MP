@@ -87,6 +87,7 @@ public class scannerTest1 {
             	System.out.println(twoDigitArray[i]);
             	//System.out.println(input.nextInt());
             	//System.out.println(input.nextInt());
+		input.close();
             }
             
             edge[] edgeGroup = new edge[arrayDumpCount];
