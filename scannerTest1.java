@@ -1,17 +1,26 @@
+/* 
+ * SOURCES
+ * Dijkstra's Algorithm: https://rosettacode.org/wiki/Dijkstra%27s_algorithm
+ * Reading files: https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
+ * Outputting to files: 
+ **/
+
 import java.io.*;
 import java.util.*;
+
 public class scannerTest1 {
 	public static void main(String[] args) {
-
-        // The name of the file to open.
-        String fileName = "C:\\Users\\Bea Mariano\\Desktop\\Codes\\FIRE EXIT MP\\123_MP-master\\MP.txt";
+		
+		// The name of the file to open.
+		String fileName = "C:\\Users\\Bea Mariano\\Desktop\\Codes\\FIRE EXIT MP\\123_MP-master\\MP.txt";
 
         // This will reference one line at a time
         String line = null;
         String line1 = null;
 
         try {
-            // FileReader reads text files in the default encoding.
+        	
+        	// FileReader reads text files in the default encoding.
             FileReader fileReader = new FileReader(fileName);
 
             // Always wrap FileReader in BufferedReader.
@@ -25,6 +34,7 @@ public class scannerTest1 {
             	//Scanner input = new Scanner(line);
                 //System.out.println(line);
                 int count = 0;
+                
                 for (int i = 0, len = line.length(); i < len; i++) {
                     if (Character.isWhitespace(line.charAt(i))) {
                         count++;
@@ -55,7 +65,7 @@ public class scannerTest1 {
             String[] twoDigitArray = new String[floorCount];
             String[] threeDigitArray = new String[arrayDumpCount];
             
-            String fName = "C:\\Users\\Bea Mariano\\Desktop\\Codes\\FIRE EXIT MP\\123_MP-master\\MP.txt";
+            String fName = "C:\\Users\\kyllecolumna\\Desktop\\MP.txt";
             FileReader fReader = new FileReader(fName);
             BufferedReader br = new BufferedReader(fReader);
             while ((line1 = br.readLine()) != null) {
@@ -89,44 +99,36 @@ public class scannerTest1 {
             	//System.out.println(input.nextInt());
             }
             
-           edge[] edgeGroup;
-           edgeGroup = new edge[arrayDumpCount];
-           
-           for (int k = 0; k < arrayDumpCount; k++) {
-        	   edgeGroup[k] = new edge();
-           }
-           
-           String START, END;
-           
-            	for (int j = 0; j < arrayDumpCount; j++) {
-            		Scanner input2 = new Scanner(threeDigitArray[j]);
-            		String temp1 = String.valueOf(input2.nextInt());
-            		System.out.println("temp1: " + temp1);
-            		edgeGroup[j].start = temp1;
-            		String temp2 = String.valueOf(input2.nextInt());
-            		System.out.println("temp2: " + temp2);
-            		edgeGroup[j].end  = temp2;
-            		edgeGroup[j].cost = input2.nextInt();
-            		System.out.println(threeDigitArray[j]);
-            	}
+            Graph.Edge[] edgeGroup;
+            edgeGroup = new Graph.Edge[arrayDumpCount];
+                      
+            String START, END;
 		
-            	List<Integer> x = new ArrayList<Integer>();    	
-            	Graph.Edge[] GRAPH = {};
+            List<Integer> x = new ArrayList<Integer>();    	
+            Graph.Edge[] GRAPH = {};
             	
-            	// ERROR: The method Edge(String, String, int) is undefined for the type Graph
-            	for (int j = 0; j < arrayDumpCount; j++) {
-            		GRAPH.add(Graph.Edge(edgeGroup[j].start, edgeGroup[j].end, edgeGroup[j].cost));
-            	}
+            // ERROR: The method Edge(String, String, int) is undefined for the type Graph
+            for (int j = 0; j < arrayDumpCount; j++) {
+            	Scanner input2 = new Scanner(threeDigitArray[j]);
+             	String temp1 = String.valueOf(input2.nextInt());
+             	String temp2 = String.valueOf(input2.nextInt());
+             	//edgeGroup[j] = new Graph.Edge(temp1, temp2, input2.nextInt());
+            	GRAPH.add(Graph.Edge(temp1, temp2, input2.nextInt()));
+            }
             	
-            	END = /* fire exit AKA last room */;
-            	
-            	for (int k = 0; k < (numOfRooms - 1); k++) {
-            		START = /* each other room */;
-            		
-            		Graph g = new Graph(GRAPH);
+            	            	
+            for (int y = 0; y < floorCount; y++) {
+            	for (int k = 0; k < (roomCount[y]); k++) {
+            		String temp = String.valueOf(k);
+            		START = /* each other room */ temp;
+            		String temp1 = String.valueOf(roomCount[y] - 1);
+            		END = temp1;
+                	Graph g = new Graph(GRAPH);
                     g.dijkstra(START);
                     g.printPath(END);
-            	}
+                }
+            }
+            	
             	
             	
 		
