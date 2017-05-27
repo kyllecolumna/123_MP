@@ -87,10 +87,15 @@ public class scannerTest1 {
             	System.out.println(twoDigitArray[i]);
             	//System.out.println(input.nextInt());
             	//System.out.println(input.nextInt());
-		input.close();
             }
             
-            edge[] edgeGroup = new edge[arrayDumpCount];
+           edge[] edgeGroup;
+           edgeGroup = new edge[arrayDumpCount];
+           
+           for (int k = 0; k < arrayDumpCount; k++) {
+        	   edgeGroup[k] = new edge();
+           }
+           
            
             	for (int j = 0; j < arrayDumpCount; j++) {
             		Scanner input2 = new Scanner(threeDigitArray[j]);
@@ -98,7 +103,6 @@ public class scannerTest1 {
             		edgeGroup[j].end  = input2.nextInt();
             		edgeGroup[j].cost = input2.nextInt();
             		System.out.println(threeDigitArray[j]);
-			input2.close();
             	}	        
             	
         }
