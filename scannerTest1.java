@@ -96,7 +96,7 @@ public class scannerTest1 {
         	   edgeGroup[k] = new edge();
            }
            
-		String START, END;
+           String START, END;
            
             	for (int j = 0; j < arrayDumpCount; j++) {
             		Scanner input2 = new Scanner(threeDigitArray[j]);
@@ -110,15 +110,26 @@ public class scannerTest1 {
             		System.out.println(threeDigitArray[j]);
             	}
 		
-		Graph.Edge[] GRAPH = { // ERROR HERE
-            			for(int j = 0; j < arrayDumpCount; j++){
-            		      new Graph.Edge(edgeGroup[j].start, edgeGroup[j].end, edgeGroup[j].cost);
-            			}
-            	};
+            	List<Integer> x = new ArrayList<Integer>();    	
+            	Graph.Edge[] GRAPH = {};
+            	
+            	// ERROR: The method Edge(String, String, int) is undefined for the type Graph
+            	for (int j = 0; j < arrayDumpCount; j++) {
+            		GRAPH.add(Graph.Edge(edgeGroup[j].start, edgeGroup[j].end, edgeGroup[j].cost));
+            	}
+            	
+            	END = /* fire exit AKA last room */;
+            	
+            	for (int k = 0; k < (numOfRooms - 1); k++) {
+            		START = /* each other room */;
+            		
+            		Graph g = new Graph(GRAPH);
+                    g.dijkstra(START);
+                    g.printPath(END);
+            	}
+            	
+            	
 		
-		Graph g = new Graph(GRAPH);
-                g.dijkstra(START);
-                g.printPath(END);
             	
         }
         catch(FileNotFoundException ex) {
@@ -263,11 +274,6 @@ class Graph {
 		      graph.get(endName).printPath();
 		      System.out.println();
 		   }
-		   /** Prints the path from the source to every vertex (output order is not guaranteed) */
-		   public void printAllPaths() {
-		      for (Vertex v : graph.values()) {
-		         v.printPath();
-		         System.out.println();
-		      }
-		   }
+		   
+}
 		
