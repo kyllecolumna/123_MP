@@ -97,6 +97,7 @@ public class scannerTest1 {
             		edgeGroup[j].end  = input2.nextInt();
             		edgeGroup[j].cost = input2.nextInt();
             		System.out.println(threeDigitArray[j]);
+			input2.close();
             	}	        
             	
         }
