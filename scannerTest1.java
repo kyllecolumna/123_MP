@@ -239,9 +239,11 @@ class Graph {
 		}
 		      
 		final Vertex source = graph.get(startName);
+		
+		// Create set for vertices to be considered for respective shortest paths (using generics)
 		NavigableSet<Vertex> q = new TreeSet<>();
 		 
-		// set-up vertices
+		// Set up vertices to check for connecting edges' costs
 		for (Vertex v : graph.values()) {
 			v.previous = v == source ? source : null;
 		        v.dist = v == source ? 0 : Integer.MAX_VALUE;
@@ -256,16 +258,20 @@ class Graph {
 		     
 		while (!q.isEmpty()) {
 		 
-			u = q.pollFirst(); // vertex with shortest distance (first iteration will return source)
-		        if (u.dist == Integer.MAX_VALUE) break; // we can ignore u (and any other remaining vertices) since they are unreachable
-		 
-		        //look at distances to each neighbour
+			// Declare vertex with the shortest distance to given vertex
+			u = q.pollFirst();
+			// If distance between vertices is infinity (unreachable), ignore u
+		        if (u.dist == Integer.MAX_VALUE) break;
+			
+		        // Scan distances for each neighbor
 		        for (Map.Entry<Vertex, Integer> a : u.neighbours.entrySet()) {
-		        	v = a.getKey(); //the neighbour in this iteration
+		        	v = a.getKey();
 		 
-		            	final int alternateDist = u.dist + a.getValue();
+		            	// Find alternate distance from vertex to neighbor
+				final int alternateDist = u.dist + a.getValue();
 		            
-				if (alternateDist < v.dist) { // shorter path to neighbour found
+				// If alternate distance is shorter, use said
+				if (alternateDist < v.dist) {
 		               		q.remove(v);
 		               		v.dist = alternateDist;
 		               		v.previous = u;
@@ -275,7 +281,7 @@ class Graph {
 		}
 	}
 		 
-	/** Prints a path from the source to the specified vertex */
+	// Create method to print the whole path between START and END vertices
 	public void printPath(String endName) {
 		if (!graph.containsKey(endName)) {
 			System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
@@ -287,4 +293,3 @@ class Graph {
 	}
 		   
 }
-		
