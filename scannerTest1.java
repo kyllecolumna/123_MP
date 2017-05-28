@@ -187,17 +187,25 @@ class Graph {
 			this.name = name;
 		}
 		 
-		// Create a method to output each succeesing vertex in each shortest path
-		private void printPath() {
-			if (this == this.previous) {
-				System.out.printf("%s", this.name);
-			} else if (this.previous == null) {
-				System.out.printf("%s(unreached)", this.name);
-			} else {
-				this.previous.printPath();
-				System.out.printf(" -> %s(%d)", this.name, this.dist);
-			}
-			
+		private void printPath() throws FileNotFoundException
+		{
+
+				if (this == this.previous) 
+				{
+					System.out.printf("Room %s: ", this.name);
+
+				}
+				else if (this.previous == null)
+				{
+					System.out.printf("%s(unreached)", this.name);
+				}
+				else
+				{
+					this.previous.printPath();
+					System.out.printf(" go to room %s", this.name);
+
+				}	
+
 		}
 		
 		// Create method to compare edge costs
@@ -281,15 +289,37 @@ class Graph {
 		}
 	}
 		 
-	// Create method to print the whole path between START and END vertices
-	public void printPath(String endName) {
-		if (!graph.containsKey(endName)) {
-			System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
-		     	return;
-		}
-		 
-		graph.get(endName).printPath();
-		System.out.println();
-	}
+	   /** Prints a path from the source to the specified vertex 
+	 * @throws FileNotFoundException */
+	   @SuppressWarnings("static-access")
+	public void printPath(String endName) throws FileNotFoundException {
+	      if (!graph.containsKey(endName)) {
+	         System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
+	         return;
+	      }
+	      graph.get(endName).printPath();
+	      System.out.println();
+	      
+	      Console c = null;
+	      String s = null;
+	      
+	      try {
+	    	  c = System.console();
+	    	  if (c != null) {
+	    		  s = c.readLine();
+	    	  }
+	      } catch(Exception ex) {
+	          // if any error occurs
+	          ex.printStackTrace();      
+	       }
+	      
+	      WriteToFileExample2 var = new WriteToFileExample2();
+	      var.printToFile("Hi po");
+
+	      
+	   }
+	
 		   
 }
+
+
