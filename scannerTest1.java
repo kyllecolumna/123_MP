@@ -142,7 +142,14 @@ public class scannerTest1 {
 					END = temp1;
 					Graph g = new Graph(GRAPH);
 					g.dijkstra(START);
-					g.printPath(END);
+					
+					if (k == 0) {
+						g.printPath(END);
+					}
+					
+					if (k == (roomCount[y] - 1)) {
+						System.out.println("(FIRE EXIT)");
+					}
 				}
 			}
 
@@ -202,7 +209,7 @@ class Graph {
 				else
 				{
 					this.previous.printPath();
-					System.out.printf(" go to room %s", this.name);
+					System.out.printf("Please go to room %s", this.name);
 
 				}	
 
