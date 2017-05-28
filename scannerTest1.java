@@ -287,7 +287,7 @@ class Graph {
 	}
 		 
 	/* 
-	 * Prints a path from the source to the specified vertex 
+	 * Print a path from the source to the specified vertex 
 	 * @throws FileNotFoundException 
 	 **/
 	@SuppressWarnings("static-access")
@@ -297,18 +297,18 @@ class Graph {
 	         	return;
 	      	}
 			
-			// get the path from source node to the fire exit
+			// Get the path from source node to the fire exit
 	      	graph.get(endName).printPath();
 	      	System.out.println();
 	      
-	      	// initialize variables
+	      	// Initialize variables
 	      	Console c = null;
 	      	String s = null;
 	      
 	      	try {
 	    		c = System.console();
 	    		if (c != null) {
-	    			// read the path written in the console
+	    			// Read the path written in the console
 	    			s = c.readLine();
 	    		}
 	      	} catch (Exception ex) {
@@ -317,7 +317,7 @@ class Graph {
 	       	}
 	      
 	      	WriteToFileExample2 var = new WriteToFileExample2();
-	      	// print the path to the txt file
+	      	// Print the path to the txt file
 	      	var.printToFile(s); 
 	   }   
 }
