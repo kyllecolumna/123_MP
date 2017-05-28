@@ -1,6 +1,5 @@
 /* 
  * SOURCES
- * Dijkstra's Algorithm: https://rosettacode.org/wiki/Dijkstra%27s_algorithm
  * Reading files: https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
  * Outputting to files: 
  **/
