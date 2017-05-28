@@ -121,13 +121,16 @@ public class scannerTest1 {
 			List<Integer> x = new ArrayList<Integer>();    	
 			Graph.Edge[] GRAPH;
 
+			// As long as there is and element in the threeDigitArray, get the info
 			for (int j = 0; j < arrayDumpCount; j++) {
 				Scanner input2 = new Scanner(threeDigitArray[j]);
+				// Convert the first int which is the first vertex to string 
 				String temp1 = String.valueOf(input2.nextInt());
+				// Convert the next vertex to string
 				String temp2 = String.valueOf(input2.nextInt());
 				
 				// ERROR: The method Edge(String, String, int) is undefined for the type Graph
-				// This supposedly adds a new Graph Edge to each GRAPH array CONTINUE DIS
+				// We create a new edge by inserting, the start vertex, the end vertex, and the cost to the edge method
 				GRAPH.add(Graph.Edge(temp1, temp2, input2.nextInt()));
 			}
 
@@ -159,7 +162,7 @@ class Graph {
 	// Map vertex names to vertex objects
 	private final Map<String, Vertex> graph;
 		 
-	/** One edge of the graph (only used by Graph constructor) */
+	// Create class for a graph edge (used by Graph constructor)
 	public static class Edge {
 		public final String v1, v2;
 		public final int dist;
@@ -169,18 +172,22 @@ class Graph {
 		        this.dist = dist;
 		}
 	}
-		 
-	/** One vertex of the graph, complete with mappings to neighbouring vertices */
+
+	// Create class for a graph vertex
 	public static class Vertex implements Comparable<Vertex>{
 		public final String name;
-		public int dist = Integer.MAX_VALUE; // MAX_VALUE assumed to be infinity
+		
+		// Assume MAX_VALUE is infinity
+		public int dist = Integer.MAX_VALUE;
 		public Vertex previous = null;
 		public final Map<Vertex, Integer> neighbours = new HashMap<>();
 		 
+		// Reference name using this keyword
 		public Vertex(String name) {
 			this.name = name;
 		}
 		 
+		// Create a method to output each succeesing vertex in each shortest path
 		private void printPath() {
 			if (this == this.previous) {
 				System.out.printf("%s", this.name);
@@ -192,7 +199,8 @@ class Graph {
 			}
 			
 		}
-		 
+		
+		// Create method to compare edge costs
 		public int compareTo(Vertex other) {
 			if (dist == other.dist) {
 				return name.compareTo(other.name);
@@ -206,24 +214,25 @@ class Graph {
 		}
 	}
 		 
-	/** Builds a graph from a set of edges */
+	// Create method to generate graphs from a set of edges
 	public Graph(Edge[] edges) {
 		graph = new HashMap<>(edges.length);
 		 
-		//one pass to find all vertices
+		// Find all vertices
 		for (Edge e : edges) {
 			if (!graph.containsKey(e.v1)) graph.put(e.v1, new Vertex(e.v1));
 		        if (!graph.containsKey(e.v2)) graph.put(e.v2, new Vertex(e.v2));
 		}
 		 
-		//another pass to set neighbouring vertices
+		// Set all neighboring vertices of each vertex
 		for (Edge e : edges) {
 		        graph.get(e.v1).neighbours.put(graph.get(e.v2), e.dist);
 		}
 	}
 		 
-	/** Runs dijkstra using a specified source vertex */ 
+	// Create method for the Dijkstra's Algorithm proper (starting from the START vertex)
 	public void dijkstra(String startName) {
+		
 		if (!graph.containsKey(startName)) {
 			System.err.printf("Graph doesn't contain start vertex \"%s\"\n", startName);
 		        return;
@@ -242,7 +251,6 @@ class Graph {
 		dijkstra(q);
 	}
 		 
-	/** Implementation of dijkstra's algorithm using a binary heap. */
 	private void dijkstra(final NavigableSet<Vertex> q) {      
 		Vertex u, v;
 		     
