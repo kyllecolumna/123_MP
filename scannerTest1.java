@@ -11,7 +11,7 @@ import java.util.*;
 public class scannerTest1 {
 	public static void main(String[] args) {
 		
-		// Store the na,e of the input file to fileName string
+		// Store the name of the input file to fileName string
 		String fileName = "C:\\Users\\Bea Mariano\\Desktop\\Codes\\FIRE EXIT MP\\123_MP-master\\MP.txt";
 
 		// These are the references for each line read in the file
@@ -110,7 +110,7 @@ public class scannerTest1 {
 				Scanner input = new Scanner(twoDigitArray[i]);
 				roomCount[i] = input.nextInt();
 				pathCount[i] = input.nextInt();
-				System.out.println(twoDigitArray[i]);
+				System.out.println("Level " + i);
 			}
 
 			Graph.Edge[] edgeGroup;
