@@ -11,26 +11,29 @@ import java.util.*;
 public class scannerTest1 {
 	public static void main(String[] args) {
 		
-		// place content from file to open into a string
+		// Store the na,e of the input file to fileName string
 		String fileName = "C:\\Users\\Bea Mariano\\Desktop\\Codes\\FIRE EXIT MP\\123_MP-master\\MP.txt";
 
-		// reference one line at a time
+		// These are the references for each line read in the file
 		String line = null;
 		String line1 = null;
 
 		try {
-			// FileReader reads text files in the default encoding.
+			// FileReader reads text files
 			FileReader fileReader = new FileReader(fileName);
 
-			// Always wrap FileReader in BufferedReader.
+			// Wrap the FileReader in BufferedReader
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			//Scanner input = new Scanner(fileName);
 			int floorCount = 0;
 			int arrayDumpCount = 0;
-
+			
+			// As we traverse to the file, we count the number of occurrences of the two types of input
+            		// Two types of input: room-path input and edge input
 			while((line = bufferedReader.readLine()) != null) {
 				int count = 0;
 
+				// The number of Whitespaces between the characters in the line indicate the number of digits int the line
 				for (int i = 0, len = line.length(); i < len; i++) {
 					if (Character.isWhitespace(line.charAt(i))) {
 						count++;
@@ -38,29 +41,39 @@ public class scannerTest1 {
 				}
 
 				if (count == 1) {
+					// Increment floorCount if it is a room-path input
 					floorCount++;
 				} else if (count == 2) {
+					// Increment arrayDumpCount if it is an edge input
 					arrayDumpCount++;;
 				}
 
 			}
 
-			// Always close files.
+			// Close the file
 			bufferedReader.close();
+			
+			/*
+            		 * For checking of the counts: 
+            		 * System.out.println("floorCount: " + floorCount);
+            		 * System.out.println("arrayDumpCount: " + arrayDumpCount);
+            		 **/
 
-			System.out.println("floorCount: " + floorCount);
-			System.out.println("arrayDumpCount: " + arrayDumpCount);
-
+			// Initialize counters
 			int count1 = 0;
 			int count2 = 0;
 
+			// Initialize arrays for two types of input, room-path input and edge input 
 			String[] twoDigitArray = new String[floorCount];
 			String[] threeDigitArray = new String[arrayDumpCount];
 
+			// Open the file again to extract the lines
 			String fName = "C:\\Users\\kyllecolumna\\Desktop\\MP.txt";
 			FileReader fReader = new FileReader(fName);
+			// Again wrap it in BufferedReader br
 			BufferedReader br = new BufferedReader(fReader);
 
+			// Traverse again through the file
 			while ((line1 = br.readLine()) != null) {
 				int count = 0;
 
@@ -71,19 +84,28 @@ public class scannerTest1 {
 				}
 
 				if (count == 1) {
+					// If it is a room-path input, store it in the twoDigitArray
 					twoDigitArray[count1] = line1;
 					count1++;
 				} else if (count == 2) {
+					// If it is an edge input, store it in the threeDigitArray
 					threeDigitArray[count2] = line1;
 					count2++;
 				}
 			}
 
+			// Close the file again
 			br.close();
 
+			/*
+			 * As we separate the room-path input, we store the number of rooms in a floor 
+            		 * in an element int the roomCount array with the floorCount as it's indices
+           	 	 * the same argument applies with pathCount array
+			 **/
 			int[] roomCount = new int[floorCount]; 
 			int[] pathCount = new int[floorCount];
 
+			// Store each info in their respective array 
 			for (int i = 0; i < floorCount; i++) {
 				Scanner input = new Scanner(twoDigitArray[i]);
 				roomCount[i] = input.nextInt();
