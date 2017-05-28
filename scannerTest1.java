@@ -1,7 +1,7 @@
 /* 
  * SOURCES
  * Reading files: https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
- * Outputting to files: 
+ * Outputting to files: https://www.tutorialspoint.com/java/io/console_readline.htm
  **/
 
 import java.io.*;
@@ -296,16 +296,19 @@ class Graph {
 	        	System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
 	         	return;
 	      	}
-		
+			
+			// get the path from source node to the fire exit
 	      	graph.get(endName).printPath();
 	      	System.out.println();
 	      
+	      	// initialize variables
 	      	Console c = null;
 	      	String s = null;
 	      
 	      	try {
 	    		c = System.console();
 	    		if (c != null) {
+	    			// read the path written in the console
 	    			s = c.readLine();
 	    		}
 	      	} catch (Exception ex) {
@@ -314,6 +317,7 @@ class Graph {
 	       	}
 	      
 	      	WriteToFileExample2 var = new WriteToFileExample2();
-	      	var.printToFile("Hi po"); 
+	      	// print the path to the txt file
+	      	var.printToFile(s); 
 	   }   
 }
