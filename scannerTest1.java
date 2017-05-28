@@ -194,25 +194,16 @@ class Graph {
 			this.name = name;
 		}
 		 
-		private void printPath() throws FileNotFoundException
-		{
+		private void printPath() throws FileNotFoundException {
 
-				if (this == this.previous) 
-				{
-					System.out.printf("Room %s: ", this.name);
-
-				}
-				else if (this.previous == null)
-				{
-					System.out.printf("%s(unreached)", this.name);
-				}
-				else
-				{
-					this.previous.printPath();
-					System.out.printf("Please go to room %s", this.name);
-
-				}	
-
+			if (this == this.previous) {
+				System.out.printf("Room %s: ", this.name);
+			} else if (this.previous == null) {
+				System.out.printf("%s(unreached)", this.name);
+			} else {
+				this.previous.printPath();
+				System.out.printf("Please go to room %s", this.name);
+			}	
 		}
 		
 		// Create method to compare edge costs
