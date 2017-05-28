@@ -21,11 +21,11 @@ public class Dijkstra {
    
    
  
-   public static void main(String[] args) {
+   public static void main(String[] args) throws FileNotFoundException {
 	   
 	  int i;
 	  
-	  String START, END;
+	  String START = null, END = null;
 	  START = "a";
 	  END = "FIRE EXIT";
 	  
@@ -66,21 +66,25 @@ class Graph {
 		this.name = name;
 	}
  
-	private void printPath()
+	private void printPath() throws FileNotFoundException
 	{
-		if (this == this.previous)
-		{
-			System.out.printf("%s", this.name);
-		}
-		else if (this.previous == null)
-		{
-			System.out.printf("%s(unreached)", this.name);
-		}
-		else
-		{
-			this.previous.printPath();
-			System.out.printf(" -> %s(%d)", this.name, this.dist);
-		}
+
+			if (this == this.previous) 
+			{
+				System.out.printf("Room %s: ", this.name);
+
+			}
+			else if (this.previous == null)
+			{
+				System.out.printf("%s(unreached)", this.name);
+			}
+			else
+			{
+				this.previous.printPath();
+				System.out.printf(" go to room %s", this.name);
+
+			}	
+
 	}
  
 	public int compareTo(Vertex other)
@@ -156,18 +160,38 @@ class Graph {
       }
    }
  
-   /** Prints a path from the source to the specified vertex */
-   public void printPath(String endName) {
+   /** Prints a path from the source to the specified vertex 
+ * @throws FileNotFoundException */
+   @SuppressWarnings("static-access")
+public void printPath(String endName) throws FileNotFoundException {
       if (!graph.containsKey(endName)) {
          System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
          return;
       }
- 
       graph.get(endName).printPath();
       System.out.println();
+      
+      Console c = null;
+      String s = null;
+      
+      try {
+    	  c = System.console();
+    	  if (c != null) {
+    		  s = c.readLine();
+    	  }
+      } catch(Exception ex) {
+          // if any error occurs
+          ex.printStackTrace();      
+       }
+      
+      WriteToFileExample2 var = new WriteToFileExample2();
+      var.printToFile("Hi po");
+
+      
    }
-   /** Prints the path from the source to every vertex (output order is not guaranteed) */
-   public void printAllPaths() {
+   /** Prints the path from the source to every vertex (output order is not guaranteed) 
+ * @throws FileNotFoundException */
+   public void printAllPaths() throws FileNotFoundException {
       for (Vertex v : graph.values()) {
          v.printPath();
          System.out.println();
