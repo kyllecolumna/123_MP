@@ -129,7 +129,6 @@ public class scannerTest1 {
 				GRAPH.add(Graph.Edge(temp1, temp2, input2.nextInt()));
 			}
 
-
 			for (int y = 0; y < floorCount; y++) {
 				for (int k = 0; k < (roomCount[y]); k++) {
 					String temp = String.valueOf(k);
