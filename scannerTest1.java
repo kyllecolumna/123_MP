@@ -119,13 +119,15 @@ public class scannerTest1 {
 			String START, END;
 
 			List<Integer> x = new ArrayList<Integer>();    	
-			Graph.Edge[] GRAPH = {};
+			Graph.Edge[] GRAPH;
 
-			// ERROR: The method Edge(String, String, int) is undefined for the type Graph
 			for (int j = 0; j < arrayDumpCount; j++) {
 				Scanner input2 = new Scanner(threeDigitArray[j]);
 				String temp1 = String.valueOf(input2.nextInt());
 				String temp2 = String.valueOf(input2.nextInt());
+				
+				// ERROR: The method Edge(String, String, int) is undefined for the type Graph
+				// This supposedly adds a new Graph Edge to each GRAPH array CONTINUE DIS
 				GRAPH.add(Graph.Edge(temp1, temp2, input2.nextInt()));
 			}
 
@@ -142,8 +144,10 @@ public class scannerTest1 {
 			}
 
 		} catch(FileNotFoundException ex) {
+			// If file cannot be found in location
 			System.out.println("Unable to open file '" + fileName + "'");
 		} catch(IOException ex) {
+			// If an input or output operation is failed or interpreted
 			System.out.println("Error reading file '" + fileName + "'");
 		}
 	}
@@ -151,7 +155,9 @@ public class scannerTest1 {
 
 
 class Graph {
-	private final Map<String, Vertex> graph; // mapping of vertex names to Vertex objects, built from a set of Edges
+	
+	// Map vertex names to vertex objects
+	private final Map<String, Vertex> graph;
 		 
 	/** One edge of the graph (only used by Graph constructor) */
 	public static class Edge {
@@ -213,7 +219,6 @@ class Graph {
 		//another pass to set neighbouring vertices
 		for (Edge e : edges) {
 		        graph.get(e.v1).neighbours.put(graph.get(e.v2), e.dist);
-		        //graph.get(e.v2).neighbours.put(graph.get(e.v1), e.dist); // also do this for an undirected graph
 		}
 	}
 		 
