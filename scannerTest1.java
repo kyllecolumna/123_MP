@@ -286,37 +286,34 @@ class Graph {
 		}
 	}
 		 
-	   /** Prints a path from the source to the specified vertex 
-	 * @throws FileNotFoundException */
-	   @SuppressWarnings("static-access")
+	/* 
+	 * Prints a path from the source to the specified vertex 
+	 * @throws FileNotFoundException 
+	 **/
+	@SuppressWarnings("static-access")
 	public void printPath(String endName) throws FileNotFoundException {
-	      if (!graph.containsKey(endName)) {
-	         System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
-	         return;
-	      }
-	      graph.get(endName).printPath();
-	      System.out.println();
+		if (!graph.containsKey(endName)) {
+	        	System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
+	         	return;
+	      	}
+		
+	      	graph.get(endName).printPath();
+	      	System.out.println();
 	      
-	      Console c = null;
-	      String s = null;
+	      	Console c = null;
+	      	String s = null;
 	      
-	      try {
-	    	  c = System.console();
-	    	  if (c != null) {
-	    		  s = c.readLine();
-	    	  }
-	      } catch(Exception ex) {
-	          // if any error occurs
-	          ex.printStackTrace();      
-	       }
+	      	try {
+	    		c = System.console();
+	    		if (c != null) {
+	    			s = c.readLine();
+	    		}
+	      	} catch (Exception ex) {
+	        	// If any error occurs
+	          	ex.printStackTrace();      
+	       	}
 	      
-	      WriteToFileExample2 var = new WriteToFileExample2();
-	      var.printToFile("Hi po");
-
-	      
-	   }
-	
-		   
+	      	WriteToFileExample2 var = new WriteToFileExample2();
+	      	var.printToFile("Hi po"); 
+	   }   
 }
-
-
